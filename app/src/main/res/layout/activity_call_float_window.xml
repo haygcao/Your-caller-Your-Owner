@@ -1,0 +1,32 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary">
+
+    <TextView
+        android:id="@+id/textViewCallerNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="来电号码："
+        android:textSize="18sp"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/textViewCallerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewCallerNumber"
+        android:text="CallerInfo"
+        android:textSize="18sp"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/textViewCallerLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewCallerName"
+        android:text="CallerLocation"
+        android:textSize="18sp"
+        android:textColor="@color/white" />
+
+</RelativeLayout>
