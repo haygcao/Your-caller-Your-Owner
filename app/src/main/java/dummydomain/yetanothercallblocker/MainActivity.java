@@ -29,13 +29,13 @@ import dummydomain.yetanothercallblocker.data.CallLogDataSource;
 import dummydomain.yetanothercallblocker.data.CallLogItem;
 import dummydomain.yetanothercallblocker.data.CallLogItemGroup;
 import dummydomain.yetanothercallblocker.data.YacbHolder;
-import dummydomain.yetanothercallblocker.data.SubscriptionManager;
 import dummydomain.yetanothercallblocker.event.CallEndedEvent;
 import dummydomain.yetanothercallblocker.event.MainDbDownloadFinishedEvent;
 import dummydomain.yetanothercallblocker.event.MainDbDownloadingEvent;
 import dummydomain.yetanothercallblocker.event.SecondaryDbUpdateFinished;
 import dummydomain.yetanothercallblocker.work.TaskService;
 import dummydomain.yetanothercallblocker.work.UpdateScheduler;
+import dummydomain.yetanothercallblocker.work.SubscriptionManager;
 
 public class MainActivity extends AppCompatActivity {
 
