@@ -1,6 +1,8 @@
 public class SubscribeActivity extends AppCompatActivity {
 
     private SubscriptionManager subscriptionManager;
+    private EditText editTextUrl;
+    private Button buttonAddWhitelist, buttonAddBlacklist;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -9,13 +11,27 @@ public class SubscribeActivity extends AppCompatActivity {
 
         subscriptionManager = new SubscriptionManager(this);
 
-        findViewById(R.id.button_add_whitelist).setOnClickListener(v -> {
-            String url = ((EditText) findViewById(R.id.edit_text_url)).getText().toString();
+        editTextUrl = findViewById(R.id.edit_text_url);
+        buttonAddWhitelist = findViewById(R.id.button_add_whitelist);
+        buttonAddBlacklist = findViewById(R.id.button_add_blacklist);
+
+        buttonAddWhitelist.setOnClickListener(v -> {
+            String url = editTextUrl.getText().toString();
+            // Handle invalid URL
+            if (!isValidUrl(url)) {
+                // Show error message
+                return;
+            }
             subscriptionManager.addWhitelistSubscription(url);
         });
 
-        findViewById(R.id.button_add_blacklist).setOnClickListener(v -> {
-            String url = ((EditText) findViewById(R.id.edit_text_url)).getText().toString();
+        buttonAddBlacklist.setOnClickListener(v -> {
+            String url = editTextUrl.getText().toString();
+            // Handle invalid URL
+            if (!isValidUrl(url)) {
+                // Show error message
+                return;
+            }
             subscriptionManager.addBlacklistSubscription(url);
         });
     }
