@@ -29,6 +29,7 @@ import dummydomain.yetanothercallblocker.data.CallLogDataSource;
 import dummydomain.yetanothercallblocker.data.CallLogItem;
 import dummydomain.yetanothercallblocker.data.CallLogItemGroup;
 import dummydomain.yetanothercallblocker.data.YacbHolder;
+import dummydomain.yetanothercallblocker.data.SubscriptionManager;
 import dummydomain.yetanothercallblocker.event.CallEndedEvent;
 import dummydomain.yetanothercallblocker.event.MainDbDownloadFinishedEvent;
 import dummydomain.yetanothercallblocker.event.MainDbDownloadingEvent;
@@ -40,7 +41,9 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String STATE_CALL_LOG_DATA_LAST_KEY = "call_log_data_last_key";
     private static final String STATE_CALL_LOG_LAYOUT_MANAGER = "call_log_layout_manager";
-
+    
+    private SubscriptionManager subscriptionManager;
+    
     private final Settings settings = App.getSettings();
 
     private final UpdateScheduler updateScheduler = UpdateScheduler.get(App.getInstance());
@@ -96,8 +99,28 @@ public class MainActivity extends AppCompatActivity {
 
                 callLogLayoutManagerState = null;
             }
+       subscriptionManager = new SubscriptionManager(this);
+
+        findViewById(R.id.button_call_float_window).setOnClickListener(v -> {
+            // 模拟来电信息
+            String callerNumber = "1234567890";
+            String callerName = "John Doe";
+            String callerLocation = "Kuala Lumpur, Malaysia";
+
+            // 启动浮动窗口 Activity
+            Intent intent = new Intent(this, FloatWindowActivity.class);
+            intent.putExtra("callerNumber", callerNumber);
+            intent.putExtra("callerName", callerName);
+            intent.putExtra("callerLocation", callerLocation);
+            startActivity(intent);
+        });
+
+        findViewById(R.id.button_subscribe).setOnClickListener(v -> {
+            // 启动订阅管理 Activity
+            startActivity(new Intent(this, SubscribeActivity.class));
         });
     }
+}
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
