@@ -4,10 +4,10 @@
     android:background="@color/colorPrimary">
 
     <TextView
-        android:id="@+id/textViewCallerNumber"
+        android:id="@+id/textViewCallerInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="来电号码："
+        android:text="CallerInfo"
         android:textSize="18sp"
         android:textColor="@color/white" />
 
@@ -15,8 +15,8 @@
         android:id="@+id/textViewCallerName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textViewCallerNumber"
-        android:text="CallerInfo"
+        android:layout_below="@+id/textViewCallerInfo"
+        android:text="CallerName"
         android:textSize="18sp"
         android:textColor="@color/white" />
 
