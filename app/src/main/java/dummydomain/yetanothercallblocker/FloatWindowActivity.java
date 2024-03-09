@@ -65,26 +65,40 @@ public class FloatWindowActivity extends AppCompatActivity {
         windowManager.addView(floatWindowView, layoutParams);
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    // Get the close button (assuming it's defined in layout_call_float_window.xml)
+    Button buttonClose = (Button) floatWindowView.findViewById(R.id.buttonClose);
 
-        // Remove the floating window if it exists
+    // Set onclick listener for the close button
+    buttonClose.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        // Close the floating window
+        if (windowManager != null && floatWindowView != null) {
+          windowManager.removeView(floatWindowView);
+        }
+        finish(); // Optionally finish the activity if needed
+      }
+    });
+  
+@Override
+protected void onPause() {
+    super.onPause();
+
+    // Check if app is not in foreground
+    if (!isApplicationVisible()) {
+        // Remove the floating window
         if (windowManager != null && floatWindowView != null) {
             windowManager.removeView(floatWindowView);
         }
-        // Get the close button
-        Button buttonClose = (Button) floatWindowView.findViewById(R.id.buttonClose);
-
-        // Set an onclick listener for the close button
-        buttonClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Close the floating window
-                if (windowManager != null && floatWindowView != null) {
-                    windowManager.removeView(floatWindowView);
-                }
-            }
-        });
     }
+}
+
+private boolean isApplicationVisible() {
+    ActivityManager activityManager = (ActivityManager) this.getSystemService(ACTIVITY_SERVICE);
+    List<ActivityManager.RunningTaskInfo> tasks = activityManager.getRunningTasks(1);
+    if (tasks != null && tasks.get(0).topActivity.getPackageName().equalsIgnoreCase(getPackageName())) {
+        return true;
+    }
+    return false;
+}
 }
